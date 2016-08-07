@@ -6,11 +6,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var Marketcloud = require('marketcloud-node');
 var routes = require('./routes/index');
 var users = require('./routes/user');
 
 var app = express();
+app.set('mc-client', marketcloud);
 
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
@@ -67,5 +68,9 @@ app.use(function(err, req, res, next) {
     });
 });
 
+var marketcloud = new Marketcloud.Client({
+	public_key : 'YOUR_PUBLIC_KEY',
+	secret_key : 'YOUR_SECRET_KEY'
+})
 
 module.exports = app;

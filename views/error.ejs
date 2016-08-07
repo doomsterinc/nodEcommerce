@@ -1,7 +1,6 @@
 <% include header %>
 
   <%- message %>
-  <%- error.status %>
-  <%- error.stack %>
+  <p><%- JSON.stringify(error) %></p>
   
 <% include footer %>
